@@ -12,6 +12,7 @@ class MaraudersMap {
 
   public:
   MaraudersMap(int treasureValue, int stepCost, int numChambers, int maxTreasurePickup);
+  int Step(int treasures);
 };
 
 #endif

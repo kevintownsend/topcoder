@@ -27,6 +27,7 @@ cc_test(
 cc_library(
     name = "random_walk",
     srcs = ["random_walk.cc"],
+    hdrs = ["random_walk.h"],
     deps = [":marauders_map"],
 )
 
@@ -41,4 +42,5 @@ cc_test(
 cc_binary(
     name = "solution",
     srcs = ["solution.cc"],
+    deps = [":random_walk"],
 )

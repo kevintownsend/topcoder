@@ -10,3 +10,11 @@ vim:
 		marauders_map.h \
 		marauders_map_test.cc
 
+test:
+	bazel test ...
+
+run:
+	java -jar tester.jar -exec "bazel run :solution"
+
+cat:
+	cat marauders_map.h random_walk.h random_walk.cc marauders_map.cc solution.cc > LostTreasureHunter.cpp
