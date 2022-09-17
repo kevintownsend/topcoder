@@ -10,4 +10,8 @@ TEST(HELLO, WORLD) {
 
 }
 
+TEST(IS_SECURE, SIMPLE) {
+  is_secure("hello", [](std::string) {return false;});
+}
+
 } // namespace

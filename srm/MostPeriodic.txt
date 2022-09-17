@@ -1,0 +1,68 @@
+PROBLEM STATEMENT
+
+We say that a string S[0..N-1] is periodic with a period P (1 <= P <= N) if for each integer i, if both i and i+P are valid indices into S then S[i] = S[i+P].
+
+
+Informally, when determining whether the string S has the period P, we can write down two copies of S so that the second copy is shifted P characters to the right. The string has the corresponding period if and only if all overlapping letters match.
+
+
+For example, the string "ABABAB" is periodic with period 2, 4, and 6, the string "IONIZATION" has period 7 and 10, and the string "COCOA" only has the trivial period 5. Illustrations follow. The last example shows why "COCOA" does not have period 2.
+
+
+
+  ABABAB    ABABAB      ABABAB        IONIZATION         COCOA
+  ..ABABAB  ....ABABAB  ......ABABAB  .......IONIZATION  ..COCOA
+                                                             ^
+                                                             mismatch
+
+
+You are given the string bank containing a collection of letters. Use all of those letters, each of them exactly once to build a string with the smallest possible period. Return that string.
+
+
+DEFINITION
+Class:MostPeriodic
+Method:construct
+Parameters:string
+Returns:string
+Method signature:string construct(string bank)
+
+
+NOTES
+-If there are multiple optimal answers, you may return any of them.
+-The returned string must be a permutation of bank.
+
+
+CONSTRAINTS
+-bank will contain between 1 and 777 characters, inclusive.
+-Each character in bank will be an uppercase English letter ('A'-'Z').
+
+
+EXAMPLES
+
+0)
+"AAAAA"
+
+Returns: "AAAAA"
+
+The only string you can return is "AAAAA". (Its shortest period length is 1.)
+
+1)
+"ABCDE"
+
+Returns: "EDCBA"
+
+All permutations of this string only have the trivial period of length 5. You may therefore return any one of them.
+
+2)
+"TOPCODER"
+
+Returns: "OTRPEDCO"
+
+The best permutations of this string have a period of length 7.
+
+3)
+"AAAABBAAAA"
+
+Returns: "AABAAABAAA"
+
+

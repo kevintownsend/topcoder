@@ -1,0 +1,102 @@
+PROBLEM STATEMENT
+
+We have N <= 62 coins. The coins are labeled by the first N characters of the string "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" (uppercase A-Z, lowercase a-z, digits).
+
+
+E.g., for N=3 the three coins are 'A', 'B', 'C', and for N=27 we have 26 coins labeled 'A'-'Z' and then a coin labeled 'a'.
+
+
+
+As in many other weighing problems, in our setting exactly one of the coins is counterfeit and all others are real. All real coins share the same weight, the counterfeit coin differs.
+The goal is to determine two things: which coin is counterfeit and whether it's lighter or heavier than the real ones.
+
+
+We can weigh the coins using a balance scale. When weighing, we can place some coins onto the left scale, other coins onto the right scale, and look what happens.
+The weighing has three possible results: '<' (left scale is lighter), '=' (both scales have the same weight), and '>' (left scale is heavier).
+
+
+
+We have already made some weighings. They are recorded in the vector <string>s L and R and in the string result.
+For each valid index i, we placed the coins from L[i] onto the left scale, the coins from R[i] onto the right scale, and we got the outcome result[i].
+
+
+
+Compute and return the minimum number of additional weighings needed to determine which coin is counterfeit and whether it's lighter or heavier than the real ones.
+
+
+DEFINITION
+Class:WeighCoins
+Method:solve
+Parameters:int, vector <string>, string, vector <string>
+Returns:int
+Method signature:int solve(int N, vector <string> L, string result, vector <string> R)
+
+
+NOTES
+-The weight of each coin is positive.
+-For the given constraints the label and type of the counterfeit coin can always be determined by making all possible weighings, thus the return value always exists.
+
+
+CONSTRAINTS
+-N will be between 3 and 62, inclusive.
+-L will have between 0 and 50 elements, inclusive.
+-result and R will each have the same length as L.
+-Each character in L and R will be a valid coin label.
+-For each i, L[i] and R[i] will be disjoint.
+-For each i, L[i] and R[i] will have the same positive length.
+-Each character in result will be less-than, equals, or greater-than.
+-L, R and result will be consistent with at least one possibility for the label and weight of the counterfeit coin.
+
+
+EXAMPLES
+
+0)
+12
+{}
+""
+{}
+
+Returns: 3
+
+This is a well-known puzzle. Solving it in just three weighings is doable but nowhere near easy.
+
+1)
+3
+{"A","A"}
+"<<"
+{"B","C"}
+
+Returns: 0
+
+We have three coins. We already did two weighings and we learned A is lighter than both B and C. The only way that's possible is that A is a counterfeit coin and it's lighter than the real ones. As we already have our answer, we don't need any additional weighings.
+
+2)
+12
+{"ABCD"}
+">"
+{"EFGL"}
+
+Returns: 2
+
+This is a useful first step when solving the puzzle from example 0.
+
+3)
+3
+{"B","C","B","C"}
+"===="
+{"C","B","C","B"}
+
+Returns: 1
+
+There can be multiple redundant weighings.
+In this test case we already know that A must be the counterfeit coin, but we still need one more weighing to tell whether it's heavier or lighter than the real ones.
+
+4)
+62
+{"1234567890qwerty","QWERTYUIOP","12VB","V"}
+"<=<="
+{"uiopasdfghjklzxc","ASDFGHJKLZ","vbnm","B"}
+
+Returns: 1
+
+Either the coin labeled '1' or the coin labeled '2' is counterfeit. Additionally, we are already sure that the counterfeit coin is lighter than the real ones. The search can now be concluded quickly: e.g., weigh coins '1' and '2' against each other and claim that the lighter of the two is the too-light counterfeit.

@@ -1,0 +1,80 @@
+// BEGIN CUT HERE
+// PROBLEM STATEMENT
+// 
+A checkerboard is a rectangular board divided into R times C unit square cells.
+The cells are colored alternately black and white.
+The cell in the top left corner is black.
+
+
+Black cells of a checkerboard are used to play checkers (also called draughts) and various other similar games.
+An action shared by many such games is that the pieces can jump each other:
+whenever a diagonal of the board contains three consecutive cells with the pattern [piece #1], [piece #2], [an empty cell], piece #1 can jump over piece #2 and land on the empty cell.
+(After such an action piece #2 is sometimes removed from the board, but this will not matter in our problem.)
+
+
+
+A configuration is a set of identical pieces, each on a different black square of the checkerboard.
+
+
+A configuration is jumpy if there is at least one way to make a jump, as described above.
+
+
+Count all jumpy configurations and return their count modulo 10^9 + 7.
+
+
+DEFINITION
+Class:JumpyCheckers
+Method:count
+Parameters:int, int
+Returns:int
+Method signature:int count(int R, int C)
+
+
+CONSTRAINTS
+-R will be between 1 and 20, inclusive.
+-C will be between 1 and 20, inclusive.
+
+
+EXAMPLES
+
+0)
+3
+3
+
+Returns: 12
+
+The jumpy configurations look as follows (each in four possible rotations around the center):
+
+  O.*   O.*   O.*
+  .O.   .O.   .O.
+  *.*   O.*   O.O
+
+
+(Above, 'O' denotes a piece, '*' an empty black cell, and '.' a white cell. The white cells are completely unused)
+
+1)
+2
+13
+
+Returns: 0
+
+There is no three-cell diagonal on this board, so no configuration can be jumpy.
+
+2)
+4
+5
+
+Returns: 774
+
+
+
+// END CUT HERE
+#line 73 "JumpyCheckers.cc"
+#include <string>
+#include <vector>
+class JumpyCheckers {
+	public:
+	int count(int R, int C) {
+		
+	}
+};

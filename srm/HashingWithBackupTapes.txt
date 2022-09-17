@@ -1,0 +1,185 @@
+PROBLEM STATEMENT
+
+We have a hash table with H buckets, numbered 0 to H-1.
+Each bucket contains a linked list of elements stored there.
+Initially, each bucket is empty.
+
+
+When adding an element to a bucket that already contains x elements, the element is compared to all other elements in the bucket and if it's a new element, it is then appended to the list.
+The worst case is clearly adding a new element, which takes x+1 steps and increments the size of the bucket.
+
+
+When analyzing the time complexity we will be interested in the worst case.
+Hence, you may assume that whenever an element is added into a bucket, that element is always a new element.
+
+
+So, for example, inserting four elements into the same (initially empty) bucket takes a total of 1+2+3+4 = 10 steps and leaves us with a bucket that now contains four distinct elements.
+
+
+
+We have T empty backup tapes available.
+
+
+At any moment you can take the content of any single bucket in the hash table, store its content on an empty tape, and empty the bucket.
+
+
+Tape backup can be done in the background and emptying the bucket can be done in constant time, so we'll assume this operation takes no time at all.
+
+
+
+Doing a backup is good because it will speed up the processing of future elements that get stored in the same bucket.
+
+
+On the other hand, doing a backup is bad because the new elements that are later added to the bucket won't get compared to the ones that got backed up earlier.
+
+
+Thus, at the very end of our process (i.e., after the very last insertion into the table) we need to fix this issue we created by backing up.
+We will bring back all the backup tapes we used. 
+For each bucket that got backed up at least once, we now need to take all the elements that ever were in that bucket (i.e., all backups of that bucket + the elements that are in that bucket at the end)
+and we have to sort them to get rid of possible duplicates. 
+If there is a total of y > 0 elements in the bucket's history, this process takes 2*y*ceiling(log2(y)) steps.
+
+
+
+We know that we are going to process a sequence of insertions.
+The sequence consists of N phases, numbered 0 to N-1.
+In phase i we are doing cnt[i] individual insertions, one after another, all of them into the same bucket: bkt[i].
+
+
+We want to optimize the worst-case number of steps needed to process these insertions by potentially using some backups.
+If we use some backups, the total number of steps includes the final sorting of each bucket that was backed up.
+
+
+Calculate and return the optimal (i.e., smallest) worst-case number of steps in which we can process the given sequence of insertions.
+
+
+
+In order to keep the input size small, the input is pseudorandom. Please use the pseudocode below to generate the arrays cnt[] and bkt[]:
+
+
+
+who = an empty array
+for i = 0 .. H-1:
+    repeat W[i] times:
+        who.append(i)
+
+state = seed
+
+for i = 0 .. N-1:
+    state = (state * 1103515245 + 12345) modulo 2^31
+    bkt[i] = who[ state modulo length(who) ]
+    state = (state * 1103515245 + 12345) modulo 2^31
+    cnt[i] = 1 + (state modulo L)
+
+
+DEFINITION
+Class:HashingWithBackupTapes
+Method:optimize
+Parameters:int, int, int, int, vector <int>, int
+Returns:long long
+Method signature:long long optimize(int H, int T, int N, int L, vector <int> W, int seed)
+
+
+NOTES
+-Remember that the number of available backup tapes limits the number of times you can back a bucket up.
+-Only the buckets that got backed up one or more times need to be sorted at the end.
+-Sorting a bucket that never contained any elements takes zero steps.
+-The reference solution does not depend on the input being pseudorandom.
+-The function ceiling(x) returns the smallest integer that is at least x. For example, ceiling(3.1) = ceiling(3.9) = ceiling(4) = 4.
+
+
+CONSTRAINTS
+-H will be between 1 and 100, inclusive.
+-T will be between 0 and 300, inclusive.
+-N will be between 1 and 100,000, inclusive.
+-L will be between 1 and 1000, inclusive.
+-W will be have exactly H elements.
+-Each element of W will be between 1 and 100, inclusive.
+-seed will be between 0 and 2^31 - 1, inclusive.
+
+
+EXAMPLES
+
+0)
+3
+1
+2
+10
+{1, 2, 3}
+4747
+
+Returns: 39
+
+
+We will generate the arrays bkt = {0, 2} and cnt = {8, 2}.
+
+
+Thus, we are inserting eight elements into bucket 0 and then two elements into bucket 2.
+
+
+Even though we are able to do one backup, it's actually faster not to do it.
+If we never backup, this sequence of insertions will take (1+2+...+8) + (1+2) = 39 steps.
+
+
+
+(Technically, backing up the empty bucket 1 at any point in time is an equally good solution, as we don't need any steps to sort an empty bucket in the end. For any of the other two buckets the time saved during insertions is smaller than the extra time needed for the final sort.)
+
+
+1)
+1
+0
+5
+1000
+{42}
+42
+
+Returns: 3446625
+
+
+Here the generated arrays are bkt = {0, 0, 0, 0, 0} and cnt = {265, 807, 533, 267, 753}.
+
+
+Thus, we do a total of 2625 insertions, all of them into bucket 0.
+
+
+As we don't have any tapes available, we just have to do all the insertions, one after another.
+
+
+2)
+1
+1
+5
+1000
+{11}
+42
+
+Returns: 1786969
+
+
+The sequence of insertions is the same as in the previous example, but now we have one tape.
+
+
+It turns out that backing up after 1313 insertions is one of the optimal possibilities.
+If we do it this way, we will make 862,641 steps before the backup, 861,328 steps during the insertions after the backup, and finally 2 * 2625 * ceiling(log2(2625)) = 2*2625*12 = 63,000 steps when sorting the bucket in the end.
+
+
+3)
+5
+2
+7
+29
+{5, 4, 3, 2, 1}
+335
+
+Returns: 1013
+
+
+Here we have bkt = {0, 1, 1, 0, 1, 3, 3} and cnt = {2, 7, 15, 19, 15, 3, 10}.
+
+
+If we only had one backup tape, the optimal solution would have been not to use it and the number of steps would have been 1025.
+
+
+Perhaps surprisingly, having two backup tapes changes the situation and gives us a different way to process these insertions in only 1013 steps. 
+
+

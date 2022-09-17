@@ -1,0 +1,108 @@
+PROBLEM STATEMENT
+
+Snooker is a cue sport. 
+It is played on a rectangular table covered with a green cloth. 
+The table has pockets at each of the four corners and in the middle of each long side. Using a cue stick, players must strike the white ball ("cue ball") and use it to get other balls of various colors into the pockets ("pot the balls"). Players accumulate points for successfully potting the balls.
+
+
+Balls that are potted can be divided into two basic groups: the "reds" and the "colors". At the beginning of a game of snooker ("a frame"), there are R identical red balls ("reds"), worth 1 points each and C distinct balls of other colors ("colors"), worth 2, 3, 4, 5, ..., C+1 points respectively. (Traditional snooker has R = 15 and C = 6, but we are playing a slightly more general version.)
+
+
+
+The balls must be potted in a correct sequence. The rules are as follows:
+
+
+At any moment, one of the two players is at the table. This player can play until they either finish the frame by clearing the table, or until they make a mistake.
+With each shot the current player must pot exactly one ball.
+If there are still red balls on the table, the ball potted by the first shot must be red. A successfully potted red ball is removed from the game.
+After potting a red ball the player must always pot one of the colors. A colored ball successfully potted this way is placed back onto its spot on the table.
+The game continues this way (with the player alternately potting a red and a color) until all red balls are gone. After the last red ball the player does still have to pot a color that will get placed back onto the table.
+Once the reds are gone, the player must finish the frame by potting the colors in increasing score order. The balls potted during this phase are no longer replaced on the table.
+
+
+For example, suppose you just arrived at the table and there are three reds (1 point each), a yellow, a green, a brown, a blue, a pink, and a black ball (2 to 7 points) on the table. The maximum score in this situation is obtained by potting the balls in the order red, black (gets replaced), red, black (replaced), red, black (replaced), yellow, green, brown, blue, pink, black. Your total score for these balls would be 1 + 7 + 1 + 7 + 1 + 7 + 2 + 3 + 4 + 5 + 6 + 7 = 51.
+
+
+
+You are given the values N, R and C.
+At some point during a frame of snooker a player came to the table and potted a valid sequence of balls that scored them exactly N points.
+Find and return any one such sequence.
+
+
+DEFINITION
+Class:SnookerScoring
+Method:scoreN
+Parameters:int, int, int
+Returns:vector <int>
+Method signature:vector <int> scoreN(int N, int R, int C)
+
+
+NOTES
+-For the given constraints a solution always exists.
+
+
+CONSTRAINTS
+-R will be between 10 and 100, inclusive.
+-C will be between 2 and 10, inclusive.
+-N will be between 1 and the maximum value that can be scored for the given R and C, inclusive.
+
+
+EXAMPLES
+
+0)
+51
+15
+6
+
+Returns: {1, 7, 1, 7, 1, 7, 2, 3, 4, 5, 6, 7 }
+
+The first four examples all have standard snooker parameters R = 15 and C = 6.
+In this one we are asked to score exactly 51 points. The return value shows one of multiple ways to do so.
+
+1)
+12
+15
+6
+
+Returns: {3, 4, 5 }
+
+
+Our example return value corresponds to the final part of the frame. The player came to the table when only five colored balls (worth 3, 4, 5, 6, 7 points) remained on the table, and successfully potted the first three.
+
+
+There are many other valid ways to score 12 points, including {1, 5, 1, 5}, {1, 3, 1, 7}, and {1, 2, 2, 3, 4}.
+
+
+2)
+17
+15
+6
+
+Returns: {1, 2, 2, 3, 4, 5 }
+
+In the situation described by our example return value for this test case, the player starts with one last red and all colors on the table. The play then proceeds as follows:
+
+The player pots the last red ball.
+The player follows this by potting a colored ball (the yellow, worth 2 points). The yellow ball gets replaced.
+Now there are only colors left on the table, so the player continues in the only possible way: by potting the balls worth 2, 3, 4, and then 5 points.
+
+
+
+3)
+16
+15
+6
+
+Returns: {1, 7, 1, 6, 1 }
+
+In our example output the last potted ball is a red one. (The player then made a mistake when trying to pot the next color.)
+
+
+4)
+45
+10
+2
+
+Returns: {1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 2, 3 }
+
+This is the largest reachable value for these values of R and C. In order to score it, we must first play each red followed by the most expensive color, and then we need to play all colors in order.

@@ -1,0 +1,12 @@
+// BEGIN CUT HERE
+
+// END CUT HERE
+#line 5 "SnookerScoring.cc"
+#include <string>
+#include <vector>
+class SnookerScoring {
+	public:
+	vector <int> scoreN(int N, int R, int C) {
+		
+	}
+};

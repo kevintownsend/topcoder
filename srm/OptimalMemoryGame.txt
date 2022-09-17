@@ -1,0 +1,93 @@
+PROBLEM STATEMENT
+
+You have a deck of 52 cards. 
+Each card has a single uppercase English letter ('A'-'Z').
+Each letter is used exactly twice, so the deck contains 26 pairs of cards.
+
+
+
+You are going to use the cards to play the memory game with your friends.
+You shuffled the deck of cards and placed them onto the table.
+The cards are arranged into a single row and they are all face-down (i.e., the letters on them are not visible).
+
+
+The memory game is played in turns.
+In each turn, the active player starts by selecting one of the cards and turning it over.
+After seeing the letter on this card, the player then selects and turns over another card.
+If the two cards are distinct, they are turned face down again and the turn ends.
+If they form a pair, the player scores a point and takes those cards away from the table.
+Then, the player gets to repeat the whole process until they either reveal two cards that don't match, or find and remove the last pair of cards.
+
+
+
+Some (possibly zero) turns of the game have already been played by other players.
+It is now your turn to play the game.
+There are 2*N cards still on the table. 
+
+
+(Note that during the game only pairs of matching cards are removed from the game, and thus it is guaranteed that those 2*N cards contain N pairs of matching cards.)
+
+
+
+The string known represents what you currently know about the cards that are still in play.
+Each character represents one of the cards.
+If the character is a letter, you are certain that the card has that specific letter.
+Otherwise, the character is '-' (dash) and it means that you don't know anything about the card. (Maybe you haven't seen it, maybe you just forgot what it was.)
+
+
+
+What is the maximum number of pairs you are guaranteed to find this turn, if you play the game optimally (i.e., in a way that maximizes this number)?
+Calculate and return this number of pairs.
+
+
+DEFINITION
+Class:OptimalMemoryGame
+Method:findPairs
+Parameters:string
+Returns:int
+Method signature:int findPairs(string known)
+
+
+NOTES
+-We want to stress that the two cards selected by the player are not selected at the same time. Instead, they are selected and revealed one at a time. When selecting the second card ("looking for a pair"), the player already knows what letter was on the first card they selected, and this information can influence the choice of the second card.
+
+
+CONSTRAINTS
+-N will be between 1 and 26, inclusive.
+-known will contain exactly 2*N characters.
+-Each character in known will be an uppercase English letter or a dash.
+-Each letter will appear at most twice in known.
+-There will be at most N distinct letters in known.
+
+
+EXAMPLES
+
+0)
+"AEIOUIAEUO"
+
+Returns: 5
+
+All ten remaining cards have already been revealed and you know what they are. You can simply collect all pairs, one after another.
+
+1)
+"----------"
+
+Returns: 0
+
+The best you can do is flip some pair of cards. You aren't guaranteed that they will match. (In fact, it's likely that they won't.) Thus, you aren't guaranteed to find any pairs here, regardless of what strategy you use.
+
+2)
+"--------A----E-----IAO----U---"
+
+Returns: 1
+
+The pair of As is the only pair you can collect here. After you do so, you may get lucky and find another pair, but this isn't guaranteed to happen.
+
+3)
+"-X"
+
+Returns: 1
+
+Sometimes we can guarantee to find a pair even if we aren't actually given the positions of both cards in it.
+For example, here the only unknown card is clearly the second X, and once we know that, we can guarantee that we can find and collect a matching pair.
+

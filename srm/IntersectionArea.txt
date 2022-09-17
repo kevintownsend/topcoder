@@ -1,0 +1,131 @@
+PROBLEM STATEMENT
+
+This problem is in a 2D plane.
+All rectangles in this problem have the following properties:
+
+
+They have sides parallel to coordinate axes.
+They have a positive area.
+All coordinates of their corners are integers between 0 and 10^6, inclusive.
+
+
+The description of a rectangle are four values: { x1, y1, x2, y2 }.
+Here, x1 and y1 are the smallest x- and y-coordinate and x2 and y2 are the largest x- and y-coordinate that belongs to the rectangle.
+
+
+
+You are given a collection of rectangles: for each valid i there is a rectangle { X1[i], Y1[i], X2[i], Y2[i] }.
+
+
+
+You want to add exactly one new rectangle to this collection.
+The new rectangle must also satisfy all three constraints specified above.
+
+
+You want to do it in such a way that the intersection of the entire collection (including the new rectangle) will have area exactly equal to A.
+
+
+If it can be done, return the description of your new rectangle.
+(Any valid solution will be accepted.)
+If it cannot be done, return an empty vector <int> instead.
+
+
+DEFINITION
+Class:IntersectionArea
+Method:addOne
+Parameters:vector <int>, vector <int>, vector <int>, vector <int>, long long
+Returns:vector <int>
+Method signature:vector <int> addOne(vector <int> X1, vector <int> Y1, vector <int> X2, vector <int> Y2, long long A)
+
+
+CONSTRAINTS
+-X1 will have between 0 and 50 elements, inclusive.
+-Y1, X2 and Y2 will each have the same number of elements as X1.
+-For each i, 0 <= X1[i] < X2[i] <= 10^6.
+-For each i, 0 <= Y1[i] < Y2[i] <= 10^6.
+-A will be between 0 and 10^12, inclusive.
+
+
+EXAMPLES
+
+0)
+{0}
+{5}
+{15}
+{10}
+25
+
+Returns: {5, 0, 10, 15 }
+
+Our collection has just one rectangle. The new rectangle intersects the old one in such a way that their union is the "plus" symbol. Their intersection has the required area.
+
+1)
+{10, 10, 10}
+{60, 60, 60}
+{60, 60, 60}
+{70, 70, 70}
+500
+
+Returns: {10, 60, 60, 70 }
+
+The rectangles in the collection do not have to be mutually distinct. The new rectangle you add can also be identical to some of the rectangles that are already in the collection.
+
+2)
+{60, 60, 60}
+{10, 10, 10}
+{70, 70, 70}
+{60, 60, 60}
+500
+
+Returns: {0, 0, 1000000, 1000000 }
+
+Any valid solution will be accepted.
+
+3)
+{0}
+{0}
+{2}
+{2}
+5
+
+Returns: { }
+
+Getting intersection area = 5 is clearly impossible.
+
+4)
+{10}
+{10}
+{100}
+{20}
+0
+
+Returns: {50, 20, 150, 30 }
+
+
+Here we want to have an intersection with area 0. The rectangle we added to the collection touches the other one. Technically, their intersection is the line segment they share. This is still OK: the area of a line segment is 0 as it only has one dimension.
+
+
+(Remember that all our rectangles must have a positive area. Adding a "rectangle" with area 0 to the collection is not allowed.)
+
+
+5)
+{}
+{}
+{}
+{}
+999999000000
+
+Returns: {0, 0, 999999, 1000000 }
+
+The current collection is empty. We must add a 999,999 x 1,000,000 rectangle or a 1,000,000 x 999,999 rectangle to the empty collection. (Remember to make sure that all coordinates of your rectangle fall into the allowed range.)
+
+6)
+{0, 2, 2, 2}
+{2, 2, 0, 2}
+{5, 7, 5, 5}
+{5, 5, 5, 7}
+4
+
+Returns: {1, 1, 4, 4 }
+
+

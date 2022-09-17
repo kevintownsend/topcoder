@@ -1,0 +1,81 @@
+PROBLEM STATEMENT
+
+All strings in this problem are strings of lowercase English letters ('a'-'z').
+
+
+
+You are given two equally long strings A and B.
+Your primary task is to transform A into B in as few steps as possible.
+
+
+In each step you must change exactly one letter. You may not change the same letter twice in a row, and you may not change the letter at index i directly from A[i] to B[i].
+
+
+
+More formally, the transformation of A to B must look as follows:
+
+
+In each step you must select exactly one index into the current word and replace the letter at that index with a different letter. (The new letter must also be a lowercase English letter. We emphasize that the new letter must be different from the current one.)
+You may never select the same index twice in a row. (In other words, in the first step you may select any index you like, but then in each following step you may not select the same index as in the previous step.)
+If you selected the index i and the letter at that index is the original letter A[i], you are not allowed to change it directly into the correct letter B[i].
+
+
+To illustrate rule 3, suppose A = "yoyo" and B = "lord". In the first step you may change "yoyo" to many different words, including "royo", "yolo", "ooyo", and "yyyo". The three changes forbidden by rule 3 are changing "yoyo" to "loyo", "yoro", and "yoyd".
+
+
+If you change "yoyo" to "royo", in the second step you can change "royo" to "roxo" but not to "royo" (rule 1), "loyo" (rule 2), or "roro" (rule 3).
+
+
+
+Your transformation of A into B can be represented by a vector <string> that starts with A, then contains all intermediate strings in chronological order, and finally ends with B.
+
+
+As stated above, your primary goal is to minimize the number of elements in this vector <string>.
+Your secondary goal: if there are multiple optimal solutions, find the lexicographically smallest one.
+Return that vector <string>.
+
+
+DEFINITION
+Class:DoubleWordLadder
+Method:transform
+Parameters:string, string
+Returns:vector <string>
+Method signature:vector <string> transform(string A, string B)
+
+
+NOTES
+-For the constraints given below a solution always exists.
+-Given two different vector <string>s S and T representing valid solutions with an optimal length, let j be the smallest index such that the strings S[j] and T[j] differ. If S[j] < T[j], we say that S is lexicographically smaller than T.
+
+
+CONSTRAINTS
+-A will have between 2 and 30 characters, inclusive.
+-B will have the same number of characters as A.
+-Each character in A and B will be a lowercase English letter ('a'-'z').
+
+
+EXAMPLES
+
+0)
+"topcoder"
+"topcoder"
+
+Returns: {"topcoder" }
+
+If A = B, the optimal sequence of steps has length 0 (do nothing) and thus the optimal return value is a vector <string> with a single element: the string with which we started and immediately also ended.
+
+1)
+"ab"
+"cd"
+
+Returns: {"ab", "aa", "ba", "bd", "cd" }
+
+
+
+2)
+"donation"
+"solution"
+
+Returns: {"donation", "aonation", "aoaation", "aoabtion", "aolbtion", "aolution", "solution" }
+
+

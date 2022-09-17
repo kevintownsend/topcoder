@@ -1,0 +1,30 @@
+// BEGIN CUT HERE
+
+// END CUT HERE
+#line 5 "IntersectionArea.cc"
+#include <string>
+#include <vector>
+#include <set>
+
+using namespace std;
+
+class IntersectionArea {
+	public:
+	vector <int> addOne(vector <int> X1, vector <int> Y1, vector <int> X2, vector <int> Y2, long long A) {
+    set<int> x_breaks;
+    set<int> y_breaks;
+
+    for(int i = 0; i < X1.size(); i++) {
+      x_breaks.insert(X1[i]);
+      x_breaks.insert(X2[i]);
+      y_breaks.insert(Y1[i]);
+      y_breaks.insert(Y2[i]);
+    }
+    vector<vector<bool> > overlap(y_breaks.size()-1, vector<int>(x_breaks.size()-1, false));
+
+    
+    vector<int> ret;
+
+		return ret;
+	}
+};

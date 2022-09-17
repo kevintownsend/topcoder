@@ -1,0 +1,103 @@
+PROBLEM STATEMENT
+
+There is a castle.
+Around the castle there is a wall.
+Along the wall there are N guard houses at regular intervals.
+They are numbered 0 to N-1 in clockwise order. 
+
+
+As the wall goes around the whole castle, if you start from guard house N-1 and continue walking clockwise around the castle, you will eventually get back to guard house 0.
+
+
+
+Everyone left the castle to go attend the wedding of the royal daughter.
+The only person left at the castle is Andre the guard.
+He just started his service by visiting guard house 0.
+
+
+Andre was given a sequence of commands: the vector <int> commands.
+Each command is a non-zero integer.
+A positive integer x is the command "walk clockwise around the castle until you visit a guard house x times".
+A negative integer x is the same command but Andre is supposed to walk counter-clockwise until he visits a guard house (-x) times.
+
+
+
+Andre was told to repeat the entire sequence of commands R times.
+
+
+Each new iteration starts from the guard house where he finished the previous one. He does not return to guard house 0 each time he begins a new sequence of commands.
+
+
+
+Return a vector<long long> with N elements: for each guard house, the total number of times Andre visited it during the entire process.
+(Element x of the return value should be the number of times guard house x was visited.)
+
+
+DEFINITION
+Class:CastleGuard
+Method:walk
+Parameters:int, int, vector <int>
+Returns:vector<long long>
+Method signature:vector<long long> walk(int N, int R, vector <int> commands)
+
+
+CONSTRAINTS
+-N will be between 3 and 500, inclusive.
+-R will be between 1 and 10^7, inclusive.
+-commands will have between 1 and 500 elements, inclusive.
+-The absolute value of each element of commands will be between 1 and 10^9, inclusive.
+
+
+EXAMPLES
+
+0)
+10
+3
+{1}
+
+Returns: {1, 1, 1, 1, 0, 0, 0, 0, 0, 0 }
+
+Andre started by visiting guard house 0. Then he repeated a sequence of commands three times. The sequence consisted of a single command "1". Thus, Andre walked to guard house 1, then to guard house 2, and finally to guard house 3. In total he visited four guard houses, each of them once.
+
+1)
+10
+1234
+{2, -3, 1}
+
+Returns: {2469, 2468, 1234, 0, 0, 0, 0, 0, 0, 1234 }
+
+
+This sequence of commands has Andre walking back and forth. In each iteration he starts at guard house 0, walks two "steps" clockwise to guard house 2, then three "steps" counter-clockwise to guard house 9, and then one "step" clockwise to guard house 0.
+
+
+Don't forget to count the initial visit to guard house 0 - the one before Andre started to execute the commands.
+
+
+2)
+97
+1000
+{314}
+
+Returns: {3238, 3238, 3238, 3238, 3238, 3238, 3238, 3238, 3238, 3238, 3238, 3238, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237, 3237 }
+
+Each command causes Andre to walk a bit more than three times around the whole castle. When this is repeated 1,000 times, he'll visit each guard house more than 3,000 times.
+
+
+3)
+47
+123
+{1, -2, 3, -4, 5, -6, 7, -8, 9, -10}
+
+Returns: {151, 151, 150, 148, 146, 144, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 143, 144, 145, 147, 149 }
+
+
+
+4)
+3
+9
+{1000000000}
+
+Returns: {3000000001, 3000000000, 3000000000 }
+
+Watch out for integer overflows, the final counts can be large.
+
