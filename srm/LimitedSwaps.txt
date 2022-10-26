@@ -1,0 +1,149 @@
+PROBLEM STATEMENT
+
+There is a shelf with N positions, numbered from 0 to N-1 left to right.
+On each position there is an item.
+The item that is currently on position i has weight W[i].
+
+
+You want to arrange the items by weight, with the lightest ones on the left.
+
+
+
+The items are very precious, so they cannot be carried far, only lifted and placed down again.
+Thus, you are only allowed to swap pairs of adjacent items. 
+
+
+You are not very strong. 
+You can only swap two items if the sum of their weights does not exceed L.
+
+
+
+An inversion on the shelf is a pair of (not necessarily adjacent) objects such that the one on the left is strictly heavier than the one on the right.
+
+
+Clearly, the fewer inversions there are, the closer is the shelf to being sorted in your desired order.
+
+
+Calculate and return the minimum number of inversions you can have on your shelf.
+
+
+
+In order to keep the input small, most of W will be pseudorandom.
+Please use the pseudocode below to generate it.
+
+
+
+state = seed
+X = length(Wprefix)
+
+for i = 0 to X-1:
+    W[i] = Wprefix[i]
+
+for i = X to N-1:
+    state = (state * 1103515245 + 12345) modulo 2^31
+    W[i] = 1 + (state modulo M)
+
+
+DEFINITION
+Class:LimitedSwaps
+Method:minInversions
+Parameters:int, int, int, vector <int>, int
+Returns:long long
+Method signature:long long minInversions(int N, int L, int M, vector <int> Wprefix, int seed)
+
+
+NOTES
+-The reference solution does not depend on the input being pseudorandom.
+
+
+CONSTRAINTS
+-N will be between 1 and 250,000, inclusive.
+-L will be between 1 and 2*10^9, inclusive.
+-M will be between 1 and 10^9, inclusive.
+-Wprefix will have between 0 and min(N,200) elements, inclusive.
+-Each element of Wprefix will be between 1 and M, inclusive.
+-seed will be between 0 and 2^31 - 1, inclusive.
+
+
+EXAMPLES
+
+0)
+7
+200
+1000
+{40, 20, 10, 70, 30, 50, 60}
+42
+
+Returns: 0
+
+We are given the entire array W. You are very strong: you can lift any two of these items. Thus, you can sort the array completely.
+
+1)
+7
+29
+1000
+{40, 20, 10, 70, 30, 50, 60}
+47
+
+Returns: 7
+
+The same test case but now you are so weak that you cannot lift any two of these items. The shelf will have to remain in its original state. There are seven inversions.
+
+2)
+7
+30
+1000
+{40, 20, 10, 70, 30, 50, 60}
+47
+
+Returns: 6
+
+Now you can at least swap the items at (0-based) positions 1 and 2. You should do so, as this decreases the number of inversions to 6.
+
+3)
+7
+30
+1000
+{20, 40, 10, 70, 30, 50, 60}
+47
+
+Returns: 6
+
+
+Note that this shelf is no longer the same as in the previous examples: the first two items are now in a different order.
+
+
+Remember that you can only swap adjacent items. You are able to lift the two lightest items at the same time (20+10 <= 30), but on this shelf these two items are not adjacent, so you currently cannot swap them.
+
+
+You are not strong enough to swap any of the pairs of adjacent items on this shelf, so you have to leave it as is. This shelf has six inversions.
+
+
+4)
+10
+1234
+1000
+{500, 470, 923}
+47
+
+Returns: 7
+
+You should have the following weights: W = {500, 470, 923, 309, 406, 299, 92, 649, 434, 151}.
+
+5)
+7
+100
+100
+{5, 5, 5, 7, 6, 6, 6}
+47
+
+Returns: 0
+
+
+Equal weights do not form an inversion. The initial shelf has three inversions.
+
+
+You can make three swaps to transform it to the shelf on which the weights are in the order {5, 5, 5, 6, 6, 6, 7}.
+This shelf is sorted.
+It has no inversions.
+

@@ -1,0 +1,60 @@
+PROBLEM STATEMENT
+
+You are hosting a party.
+
+
+Each of your friends is willing to bring you some number of candies if you invite them to the party.
+These numbers of candies are given in the vector <int> candies.
+
+
+You can invite an arbitrary subset of these friends to your party.
+Once all the invited guests arrive, you are going to collect all the candies they brought and then divide them among everyone at the party (including yourself).
+The party is perfect if it's possible to divide the candies evenly, i.e., with no remainder.
+
+
+Return the number of ways in which you can have a perfect party. (Two ways differ iff the set of participants differs.)
+
+
+
+DEFINITION
+Class:PerfectParty
+Method:invite
+Parameters:vector <int>
+Returns:long long
+Method signature:long long invite(vector <int> candies)
+
+
+CONSTRAINTS
+-candies will have between 1 and 50 elements, inclusive.
+-Each element of candies will be between 0 and 2,500, inclusive.
+
+
+EXAMPLES
+
+0)
+{0, 0, 0, 0}
+
+Returns: 16
+
+Nobody is willing to bring any candies. On one hand that means that everyone at the party will be hungry, but on the other hand you can invite any subset of your friends (including none of them or all of them) and the party will be perfect: you can divide 0 candies evenly among any number of participants.
+
+1)
+{1, 1, 1, 1, 1, 1, 1, 1}
+
+Returns: 1
+
+Regardless of how many friends you invite, you'll always have one fewer candies than participants and so the party will never be perfect - except for one case. If you don't invite anyone, you will be alone with no candies. That is clearly a perfect party. (In real life opinions may differ, but in our problem a perfect party has an exact definition.)
+
+2)
+{0, 0, 0, 0, 125}
+
+Returns: 20
+
+Let's call the last friend (the one willing to bring 125 candies) Peter. There are 2^4 = 16 ways to have a perfect party without Peter. If we do invite Peter, the party will be perfect if and only if the total number of participants is exactly 5. There are four distinct ways to do this: you need to choose one of the four other friends who won't get invited.
+
+3)
+{1, 2, 3, 4, 5, 6, 7}
+
+Returns: 31
+
+

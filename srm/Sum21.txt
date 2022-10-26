@@ -1,0 +1,49 @@
+PROBLEM STATEMENT
+You are given a list of integers in vector <int> x. We wish to select two integers from the list that add up to 21. Return the number of ways we can do this.
+
+DEFINITION
+Class:Sum21
+Method:countWays
+Parameters:vector <int>
+Returns:int
+Method signature:int countWays(vector <int> x)
+
+
+NOTES
+-In the case of duplicate integers appearing in the list, each one may be used separately (see example #2).
+
+
+CONSTRAINTS
+-x will contain between 1 and 50 elements, inclusive.
+-Each element of x will be between 1 and 20, inclusive.
+
+
+EXAMPLES
+
+0)
+{ 1, 20 }
+
+Returns: 1
+
+This is the simplest case, where the only thing to do is take both elements, which thus add up to 21.
+
+1)
+{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
+
+Returns: 0
+
+There's a lot of choices, but no pair will add up to 21.
+
+2)
+{ 10, 10, 11, 11 }
+
+Returns: 4
+
+There's a total of four ways to select a pair that adds to 21.
+
+3)
+{ 8 }
+
+Returns: 0
+
+There's no way to even select a pair of numbers when there's only one in the list.

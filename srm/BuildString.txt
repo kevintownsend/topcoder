@@ -1,0 +1,54 @@
+PROBLEM STATEMENT
+You are given a vector <string> parts. You are also given a string target. The goal will be to use some or all of the parts to concatenate together to build the target string. You may use the same part multiple times, and it is not necessary to use all of the parts.
+
+Return "YES" if it is possible to build the target string, otherwise return "NO".
+
+
+
+DEFINITION
+Class:BuildString
+Method:isPossible
+Parameters:vector <string>, string
+Returns:string
+Method signature:string isPossible(vector <string> parts, string target)
+
+
+CONSTRAINTS
+-parts will contain between 1 and 50 elements, inclusive.
+-Each element of parts will contain between 1 and 50 uppercase ('A'-'Z') characters, inclusive.
+-target will contain between 1 and 50 uppercase ('A'-'Z') characters, inclusive.
+
+
+EXAMPLES
+
+0)
+{ "TOP", "CODER" }
+"TOPCODER"
+
+Returns: "YES"
+
+It's trivial to concatenate the two strings together.
+
+1)
+{ "BOTTOM", "CODER" }
+"TOPCODER"
+
+Returns: "NO"
+
+This time it won't work.
+
+2)
+{ "ISS", "M", "IPPI" }
+"MISSISSIPPI"
+
+Returns: "YES"
+
+Notice that we use "ISS" more than once, and that we're not using the parts in order.
+
+3)
+{ "A", "B", "C", "D", "R" }
+"ABBACADABRA"
+
+Returns: "YES"
+
+

@@ -1,0 +1,56 @@
+PROBLEM STATEMENT
+You have several cards, each with a number printed on them, given in
+vector <int> cards. You select two cards--with replacement--from the deck. You
+then concatenate the values together to form a single value. For example, if you first selected 5
+and then 13, your concatenated value would be 513.
+
+What is the probability that the value is prime?
+
+
+
+DEFINITION
+Class:TwoCardsDraw
+Method:primeChance
+Parameters:vector <int>
+Returns:double
+Method signature:double primeChance(vector <int> cards)
+
+
+NOTES
+-No leading zeroes are added when concatenating the numbers.
+
+
+CONSTRAINTS
+-cards will contain between 1 and 50 elements, inclusive.
+-Each element of cards will be between 1 and 99, inclusive.
+
+
+EXAMPLES
+
+0)
+{ 1 }
+
+Returns: 1.0
+
+The only number you're going to get after concatenation is 11, so it's definitely prime.
+
+1)
+{ 1, 3 }
+
+Returns: 0.75
+
+11, 13, and 31 are prime, but 33 is not.
+
+2)
+{ 2, 4 }
+
+Returns: 0.0
+
+No number you get will be prime.
+
+3)
+{ 1, 1, 3 }
+
+Returns: 0.8888888888888888
+
+Notice that numbers can be repeated.

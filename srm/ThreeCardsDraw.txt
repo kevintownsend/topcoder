@@ -1,0 +1,46 @@
+PROBLEM STATEMENT
+You have a standard deck of playing cards, containing 52 cards in 4 suits and 13 values.
+The values are Ace (1), 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack (10), Queen (10), and King (10).
+
+You are given int total.
+If you randomly select three cards--without replacement--from the deck, what is the probability
+their values will add up to total?
+
+DEFINITION
+Class:ThreeCardsDraw
+Method:totalChance
+Parameters:int
+Returns:double
+Method signature:double totalChance(int total)
+
+
+NOTES
+-Notes that aces have a value of 1, while jacks, queens and kings have a value of 10.
+
+
+CONSTRAINTS
+-total will be between 3 and 30, inclusive.
+
+
+EXAMPLES
+
+0)
+3
+
+Returns: 1.8099547511312217E-4
+
+The only way this can happen is to pick three of the four aces.
+
+1)
+30
+
+Returns: 0.025339366515837104
+
+
+
+2)
+5
+
+Returns: 0.0021719457013574662
+
+There's a few ways to select three cards and get a total of 5.

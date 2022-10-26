@@ -1,0 +1,59 @@
+PROBLEM STATEMENT
+You are given two strings, s1 and s2. Two strings have an overlap if the last few characters of one string are identical to the first few characters of the other string.
+For example, "BIGTOP" and "TOPCODER" have an overlap of length 3, with the substring "TOP".
+On the other hand, the strings "HELLO" and "GOODBYE" have an overlap of length 0.
+Return the length of the maximum overlap of the two strings you are given.
+
+DEFINITION
+Class:StringOverlap
+Method:largestOverlap
+Parameters:string, string
+Returns:int
+Method signature:int largestOverlap(string s1, string s2)
+
+
+CONSTRAINTS
+-s1 and s2 will each contain between 1 and 50 uppercase ('A'-'Z') characters, inclusive.
+
+
+EXAMPLES
+
+0)
+"TOPCODER"
+"BIGTOP"
+
+Returns: 3
+
+This is an example mentioned in the problem statement.
+
+1)
+"HELLO"
+"GOODBYE"
+
+Returns: 0
+
+Also an example from the problem statement.
+
+2)
+"CODERTOP"
+"TOPCODER"
+
+Returns: 5
+
+Notice that we can get an overlap regardless of which string we take first, however, one is longer (5) than the other (3).
+
+3)
+"STRINGA"
+"STRINGB"
+
+Returns: 0
+
+The strings are almost identical, but putting one after the other, there's no overlap.
+
+4)
+"STRING"
+"STRING"
+
+Returns: 6
+
+The strings completely overlap in this case.

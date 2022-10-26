@@ -1,0 +1,47 @@
+PROBLEM STATEMENT
+You have several cards, each with a number written on them, given in
+vector <int> cards. You also have a int target, which
+is the value you are hoping to find.
+
+If you select a card at random, what is the probability that what is written on the card
+matches the target value?
+
+DEFINITION
+Class:OneCardDraw
+Method:pickChance
+Parameters:vector <int>, int
+Returns:double
+Method signature:double pickChance(vector <int> cards, int target)
+
+
+CONSTRAINTS
+-cards will contain between 1 and 50 elements, inclusive.
+-Each element of cards will be between 1 and 10, inclusive.
+-target will be between 1 and 10, inclusive.
+
+
+EXAMPLES
+
+0)
+{ 1, 2, 3 }
+1
+
+Returns: 0.3333333333333333
+
+There's 1 card that matches, out of 3 total, giving a 1/3 probability.
+
+1)
+{ 1, 1, 2, 3 }
+1
+
+Returns: 0.5
+
+Two cards out of 4 match.
+
+2)
+{ 1, 2, 3, 4, 5, 6, 7, 8 }
+9
+
+Returns: 0.0
+
+Since no cards match, there's no chance at all.

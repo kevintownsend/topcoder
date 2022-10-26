@@ -1,0 +1,14 @@
+// BEGIN CUT HERE
+
+// END CUT HERE
+#line 5 "PerfectParty.cc"
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class PerfectParty {
+	public:
+	long long invite(vector <int> candies) {
+		
+	}
+};
