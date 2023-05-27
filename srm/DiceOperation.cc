@@ -7,6 +7,17 @@
 using namespace std;
 
 class DiceOperation {
+  private:
+  int xor_bits(int a) {
+    int ret = 0;
+    while(a) {
+      ret ^= a&1;
+      a>>=1;
+    }
+    return ret;
+  }
+
+
 	public:
 	double solve(vector <int> dice) {
 		// sum of expected value for each bit.
@@ -25,12 +36,25 @@ class DiceOperation {
         j++;
       }
       // TODO: for each combination.
-      for(int i = 0; i < i<<9; i++) {
+      for(int j = 0; j < i<<dice.size(); j++) {
+        int use = xor_bits(j);
+        double prob_comb = 1.0L;
+        for(int k = 0; k < dice.size(); k++) {
+          if((i>> j) & 1) {
+            prob_comb *= prob[k][i];
+          } else {
+            prob_comb *= 1 - prob[k][i];
+          }
+        }
+        if (use) {
+          ret += (1<<i) * prob_comb;
+        }
         // TODO: xor
         // TODO: if 1
         // calc prob
         // Add to ret
       }
     }
+    return ret;
 	}
 };
