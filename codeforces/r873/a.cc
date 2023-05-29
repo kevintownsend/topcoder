@@ -1,13 +1,14 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
-// TODO: write code on paper.
 int main() {
   int t, n;
-  cin >> t >> n;
+  cin >> t;
   for(int i = 0; i < t; i++) {
+    cin >> n;
     int tmp;
     vector<int> lower;
     vector<int> values;
@@ -19,7 +20,19 @@ int main() {
       cin >> tmp;
       lower.push_back(tmp);
     }
-    // TODO: sort lower.
-    // TODO: choose math.
+    sort(values.begin(), values.end());
+    sort(lower.begin(), lower.end());
+
+    uint64_t ret = 1;
+    int j = 0;
+    int k = 0;
+    for(int value : values) {
+      while(j != n && lower[j] < value) {
+        j++;
+      }
+      ret = (ret * (j - k)) % (1000000000ULL + 7);
+      k++;
+    }
+    cout << ret << "\n";
   }
 }
