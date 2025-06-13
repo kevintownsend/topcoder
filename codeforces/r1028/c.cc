@@ -2,8 +2,6 @@
 
 using namespace std;
 
-// TODO: debug code.
-
 int main() {
   int tt;
   cin >> tt;
@@ -15,15 +13,14 @@ int main() {
       cin >> a[i];
     }
     int g = 0;
-    // TODO: find gcd
+    // find gcd
     for(int i = 0; i < n; i++) {
       g = gcd(g, a[i]);
     }
-    cerr << "g: " << g << "\n";
-    // TODO: use dp to find moves
-    // TODO: find largest value
+    // use dp to find moves
+    // find largest value
     int m = *max_element(a.begin(), a.end());
-    vector<int> dp(m, n + 1);
+    vector<int> dp(m + 1, n + 1);
     dp[0] = 0;
     for(int i = 0; i < n; i++) {
       for(int j = 0; j < m; j++) {
@@ -32,8 +29,10 @@ int main() {
       }
     }
 
-    // TODO: calculate ops.
+    // calculate ops.
     int ops = dp[g] - 1;
+    if(dp[g] > 1)
+      ops--;
     for(int i = 0; i < n; i++) {
       if(a[i] != g)
         ops++;
