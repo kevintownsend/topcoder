@@ -2,3 +2,5 @@
 *~
 .*.swp
 .bazelversion
+*.out
+*.in
