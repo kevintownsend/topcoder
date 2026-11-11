@@ -4,3 +4,8 @@
 .bazelversion
 *.out
 *.in
+*.bak
+.DS_Store
+__MACOSX/
+._*
+
