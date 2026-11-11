@@ -78,7 +78,7 @@ int main() {
             second_half_diffs[n - middle - 1]}));
     }
     ret = std::min(ret, std::abs(values[middle - 1] - values[middle]));
-    for(int i = middle + 1; i < n - 1; i++) {
+    for(int i = middle + 1; i < n; i++) {
       ret = std::min(ret,
           std::max({
             first_half_diffs[middle - 1],
