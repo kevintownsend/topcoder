@@ -15,7 +15,8 @@ $(addprefix d,$(PROBLEMS)): d%: %.cc
 	@if [ -f $*.in ]; then ./$*.out < $*.in; else ./$*.out; fi
 
 vim:
-	vim -p a.cc a.in b.cc b.in c.cc c.in d.cc d.in e.cc e.in
+	vim -p f.cc f.in
+#	vim -p a.cc a.in b.cc b.in c.cc c.in d.cc d.in e.cc e.in
 
 clean:
 	rm -f *.out
