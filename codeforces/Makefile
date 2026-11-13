@@ -1,4 +1,4 @@
-PROBLEMS = a b c d e
+PROBLEMS = a b c d e f
 
 r%:
 	@mkdir -p $@

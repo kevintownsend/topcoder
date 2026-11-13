@@ -9,12 +9,12 @@ From the `codeforces/` directory, generate a new round folder from [`codeforces/
 ```bash
 cd codeforces && make r1134
 ```
-This creates `codeforces/r1134/` with starter files (`a.cc`–`e.cc`), empty sample input files (`a.in`–`e.in`), and a `Makefile`.
+This creates `codeforces/r1134/` with starter files (`a.cc`–`f.cc`), empty sample input files (`a.in`–`f.in`), and a `Makefile`.
 
 ### Compile & Run
 Inside a round directory (e.g., `codeforces/r1134/`):
-- **`make a`** (or `b`, `c`, `d`, `e`, `f`): Compile `a.cc` with `-O2` and run `./a.out < a.in`.
-- **`make da`** (or `db`, `dc`, `dd`, `de`, `df`): Compile and run with debug flags, AddressSanitizer, UndefinedBehaviorSanitizer, and bounds-checked STL (`-D_GLIBCXX_DEBUG`).
+- **`make <name>`** (e.g., `make a`, `make f`, `make f_upsolve`): Compile `<name>.cc` with `-O2` and run `./<name>.out` on `<name>.in` (falling back to `<prefix>.in`, e.g. `f.in` for `f_upsolve`).
+- **`make d<name>`** (e.g., `make da`, `make df_upsolve`): Compile and run with debug flags, AddressSanitizer, UndefinedBehaviorSanitizer, and bounds-checked STL (`-D_GLIBCXX_DEBUG`).
 - **`make vim`**: Open all `.cc` and `.in` files in Vim tabs (`vim -p`).
 - **`make clean`**: Remove compiled `*.out` binaries.
 

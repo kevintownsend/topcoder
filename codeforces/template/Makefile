@@ -2,20 +2,24 @@ CXX = g++
 CXXFLAGS = -std=c++20 -O2 -Wall -Wextra
 DBGFLAGS = -std=c++20 -g -O1 -Wall -Wextra -fsanitize=address,undefined -D_GLIBCXX_DEBUG
 
-PROBLEMS = a b c d e f
+TARGETS := $(patsubst %.cc,%,$(wildcard *.cc))
 
-.PHONY: $(PROBLEMS) $(addprefix d,$(PROBLEMS)) vim clean
+.PHONY: $(TARGETS) $(addprefix d,$(TARGETS)) vim clean
 
-$(PROBLEMS): %: %.cc
+$(TARGETS): %: %.cc
 	$(CXX) $(CXXFLAGS) $< -o $@.out
-	@if [ -f $@.in ]; then ./$@.out < $@.in; else ./$@.out; fi
+	@if [ -f $@.in ]; then ./$@.out < $@.in; \
+	elif [ -f $(firstword $(subst _, ,$@)).in ]; then ./$@.out < $(firstword $(subst _, ,$@)).in; \
+	else ./$@.out; fi
 
-$(addprefix d,$(PROBLEMS)): d%: %.cc
+$(addprefix d,$(TARGETS)): d%: %.cc
 	$(CXX) $(DBGFLAGS) $< -o $*.out
-	@if [ -f $*.in ]; then ./$*.out < $*.in; else ./$*.out; fi
+	@if [ -f $*.in ]; then ./$*.out < $*.in; \
+	elif [ -f $(firstword $(subst _, ,$*)).in ]; then ./$*.out < $(firstword $(subst _, ,$*)).in; \
+	else ./$*.out; fi
 
 vim:
-	vim -p a.cc a.in b.cc b.in c.cc c.in d.cc d.in e.cc e.in
+	vim -p a.cc a.in b.cc b.in c.cc c.in d.cc d.in e.cc e.in f.cc f.in
 
 clean:
 	rm -f *.out
