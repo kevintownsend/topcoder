@@ -1,6 +1,6 @@
 # Codeforces Contest Strategy & C++ Playbook
 
-A practical checklist and pattern guide tailored to this repository's past rounds (`r943`–`r1133`).
+A practical checklist and pattern guide tailored to this repository's past rounds (`r943`–`r1134`).
 
 ---
 
@@ -104,7 +104,54 @@ int64_t modpow(int64_t base, int64_t exp) {
 
 ---
 
-## 4. Live Contest Pacing (2-Hour Round)
+## 4. 2-Minute Pattern Printers (No Input Parsing Needed)
+
+When you don't have a clean formula after 10 minutes on a game, parity, or rearrangement problem, drop one of these 10-line loops directly into `main()`, run `make e`, and read the pattern off the terminal.
+
+### A. 1D Recurrence / Parity Table
+*Seen in: [`codeforces/r1134/e.cc`](../codeforces/r1134/e.cc)*
+```cpp
+for (int k = 1; k <= 4; k++) {
+  vector<int> dp(12, 0);
+  dp[0] = 1;
+  cout << "k=" << k << ": ";
+  for (int i = 0; i < 12; i++) {
+    for (int j = 1; j <= k && i - j >= 0; j++) dp[i] ^= dp[i - j];
+    cout << dp[i] << " ";
+  }
+  cout << "\n";
+}
+// Output immediately reveals dp[i] == 1 iff i % (k + 1) == 0
+```
+
+### B. Impartial Game Winning/Losing States (`win`)
+A state `i` is winning (`1`) iff at least one valid move leads to a losing (`0`) state:
+```cpp
+int N = 30;
+vector<int> win(N + 1, 0);
+for (int i = 1; i <= N; i++) {
+  for (int move : {1, 3, 4}) { // replace with valid transitions from i
+    if (i - move >= 0 && !win[i - move]) win[i] = 1;
+  }
+  cout << i << ":" << win[i] << (i % 10 == 0 ? "\n" : "  ");
+}
+```
+
+### C. Small Permutation / Arrangement Search (`next_permutation`)
+*Seen in: [`codeforces/r1134/c.cc`](../codeforces/r1134/c.cc), [`codeforces/r1134/f_upsolve.cc`](../codeforces/r1134/f_upsolve.cc)*
+```cpp
+vector<int> p = {1, 2, 3, 4, 5};
+do {
+  if (score(p) == target) {
+    for (int x : p) cout << x << " ";
+    cout << "\n";
+  }
+} while (next_permutation(p.begin(), p.end()));
+```
+
+---
+
+## 5. Live Contest Pacing (2-Hour Round)
 
 1. **Minutes 0–25 (Problems A & B)**:
    - Read carefully, check constraints ($N = 1$? $K = 0$? all elements equal?), run `make da`, and submit cleanly. Avoid wrong-answer penalties on A/B—each WA costs 50+ points and momentum.
